@@ -1,6 +1,6 @@
-class suserepo::multiple (
+class opensuse_repo::multiple (
   $repos   = [],
   $options = {}
 ) {
-  ensure_resource('suserepo',$repos,$options)
+  ensure_resource('opensuse_repo',$repos,$options)
 }

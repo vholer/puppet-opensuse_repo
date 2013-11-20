@@ -1,17 +1,23 @@
-define suserepo (
+define opensuse_repo (
   $enabled      = 1,
   $descr        = "Repository ${title}",
   $urlprefix    = 'http://download.opensuse.org/repositories',
   $baseurl      = undef,
+  $platform     = undef,
   $gpgkey       = undef,
   $local_gpgkey = true,
-  $platform     = undef,
   $gpgcheck     = 1,
   $autorefresh  = 1,
   $keeppackages = 0,
   $type         = 'rpm-md'
 ) {
   validate_bool($local_gpgkey)
+
+  case $enabled {
+    0,1:     { $_ensure = present }
+    absent:  { $_ensure = absent }
+    default: { fail('Enabled must be 0, 1 or "absent"') }
+  }
 
   # make repository name friendly for filename
   $_name = regsubst(
@@ -61,14 +67,15 @@ define suserepo (
       }
     }
 
-    suserepo::gpgkey { $_gpgkey_fn:
-      ensure  => present, #TODO: $_ensure
+    opensuse_repo::gpgkey { $_gpgkey_fn:
+      ensure  => $_ensure,
       source  => "puppet:///modules/suserepo/${title}/${_platform}/repodata/repomd.xml.key",
       require => File['/etc/pki/rpm-gpg'],
       before  => Zypprepo[$_name],
     }
   }
 
+  #TODO: absent
   zypprepo { $_name:
     enabled      => $enabled,
     descr        => $descr,
