@@ -69,7 +69,7 @@ define opensuse_repo (
 
     opensuse_repo::gpgkey { $_gpgkey_fn:
       ensure  => $_ensure,
-      source  => "puppet:///modules/suserepo/${title}/${_platform}/repodata/repomd.xml.key",
+      source  => "puppet:///modules/opensuse_repo/${title}/${_platform}/repodata/repomd.xml.key",
       require => File['/etc/pki/rpm-gpg'],
       before  => Zypprepo[$_name],
     }
