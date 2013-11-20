@@ -1,7 +1,9 @@
 # Puppet OpenSUSE repositories module
 
-This module adds and imports GPG keys for repositories
-from OpenSUSE (http://download.opensuse.org/repositories).
+This module manages local configuration of repositories from the OpenSUSE
+(http://download.opensuse.org/repositories). It contains mirror of public
+signing GPG keys, which can be automatically imported before adding
+new repository.
 
 ### Requirements
 
@@ -43,7 +45,7 @@ opensuse_repo { name:
 }
 ```
 
-Class wrapper for adding multiple repositories at time.
+Class wrapper for adding multiple repositories at time (e.g. via Hiera):
 
 ```puppet
 class { 'opensuse_repo::multiple':
