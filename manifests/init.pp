@@ -1,6 +1,6 @@
 define opensuse_repo (
   $enabled      = 1,
-  $descr        = "Repository ${title}",
+  $descr        = undef,
   $urlprefix    = 'http://download.opensuse.org/repositories',
   $baseurl      = undef,
   $platform     = undef,
@@ -56,7 +56,7 @@ define opensuse_repo (
   } elsif $local_gpgkey == false {
     $_gpgkey = "${_baseurl}repodata/repomd.xml.key"
   } elsif $local_gpgkey == true {
-    $_gpgkey_fn = "/etc/pki/rpm-gpg/RPM-GPG-KEY-${_name}"
+    $_gpgkey_fn = "/etc/pki/rpm-gpg/RPM-GPG-KEY-${_name}-${_platform}"
     $_gpgkey = "file://${_gpgkey_fn}"
 
     # on RH systems directory used to store
@@ -73,6 +73,12 @@ define opensuse_repo (
       require => File['/etc/pki/rpm-gpg'],
       before  => Zypprepo[$_name],
     }
+  }
+
+  if $descr {
+    $_descr = $descr
+  } else {
+    $_descr = "Repository ${title} for ${platform}"
   }
 
   #TODO: absent
