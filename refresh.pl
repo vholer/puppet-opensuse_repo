@@ -54,6 +54,21 @@ sub read_structure($$) {
 
 #####
 
+# write timestamp
+open(T, '>', "${temp}/.timestamp")
+		or die('Could not open timestamp');
+print(T time(),"\n") or die;
+close(T) or die;
+
+# read whole OpenSUSE web structure
 read_structure($url, $temp);
-remove_tree($dst) or die($!) if -d $dst;
-dirmove($temp, $dst) or die("Move failed: $!");
+
+
+# replace old keys with newly read keys
+if (-d $dst) {
+	remove_tree($dst)
+		or die($!)
+}
+
+dirmove($temp, $dst)
+	or die("Move failed: $!");
