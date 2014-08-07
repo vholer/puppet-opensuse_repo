@@ -1,0 +1,49 @@
+{
+  "name": "ceritsc-opensuse_repo",
+  "version": "1.0.20140807",
+  "author": "ceritsc",
+  "summary": "Configure Zypper for OpenSUSE repositories",
+  "license": "MIT",
+  "source": "https://github.com/CERIT-SC/puppet-opensuse_repo.git",
+  "project_page": "https://github.com/CERIT-SC/puppet-opensuse_repo",
+  "issues_url": "https://github.com/CERIT-SC/puppet-opensuse_repo/issues",
+  "tags": [
+    "suse",
+    "opensuse",
+    "obs"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "SLES"
+    },
+    {
+      "operatingsystem": "SLED"
+    },
+    {
+      "operatingsystem": "OpenSuSE"
+    },
+    {
+      "operatingsystem": "SuSE"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.3.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.3"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.0.0"
+    },
+    {
+      "name": "darin/zypprepo",
+      "version_requirement": ">= 1.0.1"
+    }
+  ]
+}
