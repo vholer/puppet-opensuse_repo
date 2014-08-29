@@ -45,22 +45,15 @@ opensuse_repo { name:
 }
 ```
 
-Class wrapper for adding multiple repositories at time (e.g. via Hiera):
+Class wrapper for adding multiple repositories via Hiera:
 
 ```puppet
-class { 'opensuse_repo::multiple':
-  repos   => [ ... ],
-  options => { ... }
-}
+include opensuse_repo::multiple
 ```
+With Hiera only resolved parameters:
 
-Example: 
-
-```puppet
-class { 'opensuse_repo::multiple':
-  repos => ['systemsmanagement:/puppet', 'filesystems'],
-}
-```
+- **repos** - array of repository names
+- **options** - hash of opensuse\_repo options
 
 ***
 
