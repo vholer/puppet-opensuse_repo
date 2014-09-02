@@ -1,3 +1,17 @@
+## 2014-09-02 - Release 1.2.20140902
+
+### Summary
+
+Signing keys refresh. Fix metadata.json
+
+#### Features
+
+- Signing keys refresh.
+
+#### Bugfixes
+
+- Fix metadata.json module dependencies
+
 ## 2014-08-29 - Release 1.1.20140829
 
 ### Summary
