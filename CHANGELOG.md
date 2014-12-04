@@ -1,3 +1,13 @@
+## 2014-12-04 - Release 1.2.20141204
+
+### Summary
+
+Signing keys refresh.
+
+#### Features
+
+- Signing keys refresh.
+
 ## 2014-09-02 - Release 1.2.20140902
 
 ### Summary
