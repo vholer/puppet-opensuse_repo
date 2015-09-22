@@ -1,3 +1,13 @@
+## 2015-09-22 - Release 1.3.20150922
+
+### Summary
+
+Signing keys refresh.
+
+#### Features
+
+- Signing keys refresh.
+
 ## 2014-12-08 - Release 1.3.20141204
 
 Fix file/directory permissions.
