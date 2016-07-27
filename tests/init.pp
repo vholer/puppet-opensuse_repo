@@ -1,3 +1,3 @@
-opensuse_repo { 'filesystems':
+obs_repo { 'filesystems':
   enabled => 1,
 }

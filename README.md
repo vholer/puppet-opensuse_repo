@@ -1,6 +1,6 @@
-# Puppet OpenSUSE repositories module
+# Puppet OpenSUSE Build Service repositories module
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/vholer/opensuse_repo.svg)](https://forge.puppetlabs.com/vholer/opensuse_repo)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/vholer/obs_repo.svg)](https://forge.puppetlabs.com/vholer/obs_repo)
 
 This module manages local configuration of repositories from the OpenSUSE
 (http://download.opensuse.org/repositories). It contains mirror of public
@@ -24,7 +24,7 @@ Required modules:
 Add repository and import mirrored GPG key. Example:
 
 ```puppet
-opensuse_repo { 'systemsmanagement:/puppet':
+obs_repo { 'systemsmanagement:/puppet':
   enabled => 0,
 }
 ```
@@ -32,7 +32,7 @@ opensuse_repo { 'systemsmanagement:/puppet':
 Full configuration options:
 
 ```puppet
-opensuse_repo { name:
+obs_repo { name:
   enabled      => 0|1|absent,  # enable state
   descr        => '...',       # repository description
   urlprefix    => 'http://download.opensuse.org/repositories',
@@ -50,7 +50,7 @@ opensuse_repo { name:
 Class wrapper for adding multiple repositories via Hiera:
 
 ```puppet
-include opensuse_repo::multiple
+include obs_repo::multiple
 ```
 With Hiera only resolved parameters:
 

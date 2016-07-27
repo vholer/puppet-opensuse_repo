@@ -1,4 +1,4 @@
-# Define: opensuse_repo::gpgkey
+# Define: obs_repo::gpgkey
 #
 # This definition saves and imports public GPG key for RPM. Key can
 # be stored on Puppet's fileserver or as inline content. Key can be
@@ -19,14 +19,14 @@
 #   RPM based system
 #
 # Sample usage:
-#   opensuse_repo::gpgkey { '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-smoketest1':
+#   obs_repo::gpgkey { '/etc/pki/rpm-gpg/RPM-GPG-KEY-puppet-smoketest1':
 #     ensure  => present,
 #     content => '-----BEGIN PGP PUBLIC KEY BLOCK-----
 #   ...
 #   -----END PGP PUBLIC KEY BLOCK-----';
 #   }
 #
-define opensuse_repo::gpgkey (
+define obs_repo::gpgkey (
   $path    = $name,
   $ensure  = present,
   $content = '',

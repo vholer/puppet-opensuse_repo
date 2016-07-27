@@ -1,4 +1,4 @@
-define opensuse_repo (
+define obs_repo (
   $enabled      = 1,
   $descr        = undef,
   $urlprefix    = 'http://download.opensuse.org/repositories',
@@ -67,9 +67,9 @@ define opensuse_repo (
       }
     }
 
-    opensuse_repo::gpgkey { $_gpgkey_fn:
+    obs_repo::gpgkey { $_gpgkey_fn:
       ensure  => $_ensure,
-      source  => "puppet:///modules/opensuse_repo/${title}/${_platform}/repodata/repomd.xml.key",
+      source  => "puppet:///modules/obs_repo/${title}/${_platform}/repodata/repomd.xml.key",
       require => File['/etc/pki/rpm-gpg'],
       before  => Zypprepo[$_name],
     }

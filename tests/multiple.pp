@@ -1,3 +1,3 @@
-class { 'opensuse_repo::multiple':
+class { 'obs_repo::multiple':
   repos => ['systemsmanagement:/puppet', 'filesystems'],
 }
