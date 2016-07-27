@@ -1,3 +1,13 @@
+## 2016-07-27 - Release 1.5.20160727
+
+### Summary
+
+Module rename.
+
+#### Features
+
+- Module rename o obs\_repo to support other platforms than OpenSUSE.
+
 ## 2016-07-27 - Release 1.4.20160727
 
 ### Summary
