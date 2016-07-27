@@ -1,3 +1,14 @@
+## 2016-07-27 - Release 1.3.20160727
+
+### Summary
+
+Signing keys refresh. Module deprecation.
+
+#### Features
+
+- Signing keys refresh
+- Module deprecation notice
+
 ## 2015-09-22 - Release 1.3.20150922
 
 ### Summary
