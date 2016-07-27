@@ -1,6 +1,6 @@
-# This module is not maintained anymore. Please switch to https://forge.puppet.com/vholer/opensuse_repo or https://github.com/vholer/puppet-opensuse_repo
-
 # Puppet OpenSUSE repositories module
+
+[![Puppet Forge](http://img.shields.io/puppetforge/v/vholer/opensuse_repo.svg)](https://forge.puppetlabs.com/vholer/opensuse_repo)
 
 This module manages local configuration of repositories from the OpenSUSE
 (http://download.opensuse.org/repositories). It contains mirror of public
@@ -56,7 +56,3 @@ With Hiera only resolved parameters:
 
 - **repos** - array of repository names
 - **options** - hash of opensuse\_repo options
-
-***
-
-CERIT Scientific Cloud, <support@cerit-sc.cz>
