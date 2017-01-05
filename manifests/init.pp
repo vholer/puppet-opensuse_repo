@@ -35,7 +35,11 @@ define obs_repo (
       $version = regsubst($::operatingsystemrelease, '\.', '_SP')
       $_platform = "SLE_${version}"
     } elsif $::operatingsystem =~ /SuSE/ {
-      $_platform = "openSUSE_${::operatingsystemrelease}"
+      if $::operatingsystemmajrelease > 13 {
+        $_platform = "openSUSE_Leap_${::operatingsystemrelease}"
+      } else {
+        $_platform = "openSUSE_${::operatingsystemrelease}"
+      }
     } else {
       fail("Unsupported OS: ${::operatingsystem}")
     }
