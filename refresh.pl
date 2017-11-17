@@ -5,7 +5,7 @@ use File::Temp qw(tempdir);
 use File::Path qw(remove_tree);
 use File::Copy::Recursive qw(dirmove);
 
-my $url='http://download.opensuse.org/repositories/';
+my $url='https://download.opensuse.org/repositories/';
 my $ua = Mojo::UserAgent->new->max_redirects(0); #no redirects away
 my $temp = tempdir( CLEANUP => 1 );
 my $dst = './files';
@@ -13,10 +13,10 @@ my $dst = './files';
 sub read_page($) {
 	# iterate over list of links in html->body->pre section
 	my @links;
-	for my $l ($ua->get($_[0])->res->dom->find('html body pre a')->each) {
-		my $href = $l->{href};	
+	for my $l ($ua->get($_[0])->res->dom->find('html body div table tr a')->each) {
+		my $href = $l->{href};
 		# filter "?C=N;O=D" and absolute parent's path
-		if ($href !~ /^[\/?]/) { 
+		if ($href !~ /^[\/?]/) {
 			$href =~ s/^\.\///; # strip leading ./
 			push(@links, $href);
 		}
@@ -45,7 +45,7 @@ sub read_structure($$) {
 			$fn = "$_[1]/${fn}"; # prefix with output dir
 
 			if ($fn && $fc) {
-				File::Flat->write($fn,$fc) 
+				File::Flat->write($fn,$fc)
 					or die("Failed to write ${fn}")
 			}
 		}
