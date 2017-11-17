@@ -1,7 +1,7 @@
 define obs_repo (
   $enabled      = 1,
   $descr        = undef,
-  $urlprefix    = 'http://download.opensuse.org/repositories',
+  $urlprefix    = 'https://download.opensuse.org/repositories',
   $baseurl      = undef,
   $platform     = undef,
   $gpgkey       = undef,
@@ -27,7 +27,7 @@ define obs_repo (
   # detect platform and transform name and version
   # into http://download.opensuse.org compatible format
   # SLE_x_SPy or openSUSE_x.y
-  if $platform {
+  if ! empty($platform) {
     $_platform = $platform
   } else {
     if $::operatingsystem =~ /^SLE[SD]$/ {
@@ -35,7 +35,7 @@ define obs_repo (
       $version = regsubst($::operatingsystemrelease, '\.', '_SP')
       $_platform = "SLE_${version}"
     } elsif $::operatingsystem =~ /SuSE/ {
-      if $::operatingsystemmajrelease > 13 {
+      if versioncmp($::operatingsystemmajrelease, '13') > 0 {
         $_platform = "openSUSE_Leap_${::operatingsystemrelease}"
       } else {
         $_platform = "openSUSE_${::operatingsystemrelease}"
@@ -45,7 +45,7 @@ define obs_repo (
     }
   }
 
-  if $baseurl {
+  if ! empty($baseurl) {
     if $baseurl =~ /\/$/ {
       $_baseurl = $baseurl
     } else {
@@ -55,7 +55,7 @@ define obs_repo (
     $_baseurl = "${urlprefix}/${title}/${_platform}/"
   }
 
-  if $gpgkey {
+  if ! empty($gpgkey) {
     $_gpgkey = $gpgkey
   } elsif $local_gpgkey == false {
     $_gpgkey = "${_baseurl}repodata/repomd.xml.key"
@@ -79,7 +79,7 @@ define obs_repo (
     }
   }
 
-  if $descr {
+  if ! empty($descr) {
     $_descr = $descr
   } else {
     $_descr = "Repository ${title} for ${platform}"

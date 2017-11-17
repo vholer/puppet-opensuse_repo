@@ -35,7 +35,7 @@ define obs_repo::gpgkey (
   $group   = 'root',
   $mode    = '0644'
 ) {
-  if ($content == '') and ($source == '') {
+  if empty($content) and empty($source) {
     fail('Missing params: $content or $source must be specified')
   }
 
@@ -46,7 +46,7 @@ define obs_repo::gpgkey (
     mode   => $mode,
   }
 
-  if $content {
+  if ! empty($content) {
     File[$path] { content => $content }
     $rpmname = "gpg-pubkey-$( \
 echo '${content}' | \
@@ -54,7 +54,7 @@ gpg --quiet --with-colon --homedir=/root --throw-keyids | \
 cut -d: -f5 | cut -c9- | tr '[A-Z]' '[a-z]' | head -1)"
   }
 
-  if $source {
+  if ! empty($source) {
     File[$path] { source => $source }
     $rpmname = "gpg-pubkey-$( \
 gpg --quiet --with-colon --homedir=/root --throw-keyids <${path} | \
