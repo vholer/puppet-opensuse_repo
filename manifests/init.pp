@@ -5,14 +5,11 @@ define obs_repo (
   $baseurl      = undef,
   $platform     = undef,
   $gpgkey       = undef,
-  $local_gpgkey = true,
   $gpgcheck     = 1,
   $autorefresh  = 1,
   $keeppackages = 0,
   $type         = 'rpm-md'
 ) {
-  validate_bool($local_gpgkey)
-
   case $enabled {
     0,1:     { $_ensure = present }
     absent:  { $_ensure = absent }
@@ -57,26 +54,8 @@ define obs_repo (
 
   if ! empty($gpgkey) {
     $_gpgkey = $gpgkey
-  } elsif $local_gpgkey == false {
+  } else {
     $_gpgkey = "${_baseurl}repodata/repomd.xml.key"
-  } elsif $local_gpgkey == true {
-    $_gpgkey_fn = "/etc/pki/rpm-gpg/RPM-GPG-KEY-${_name}-${_platform}"
-    $_gpgkey = "file://${_gpgkey_fn}"
-
-    # on RH systems directory used to store
-    # GPG keys before importing
-    if ! defined(File['/etc/pki/rpm-gpg']) {
-      file { '/etc/pki/rpm-gpg':
-        ensure => directory,
-      }
-    }
-
-    obs_repo::gpgkey { $_gpgkey_fn:
-      ensure  => $_ensure,
-      source  => "puppet:///modules/obs_repo/${title}/${_platform}/repodata/repomd.xml.key",
-      require => File['/etc/pki/rpm-gpg'],
-      before  => Zypprepo[$_name],
-    }
   }
 
   if ! empty($descr) {
@@ -95,5 +74,15 @@ define obs_repo (
     autorefresh  => $autorefresh,
     keeppackages => $keeppackages,
     type         => $type,
+  }
+
+  # automatically import GPG key
+  if ($enabled == 1) and ($gpgcheck == 1) {
+    exec { "zypper-refresh-${_name}":
+      command     => "zypper --gpg-auto-import-keys refresh ${_name}",
+      path        => '/bin:/usr/bin:/sbin:/usr/sbin',
+      refreshonly => true,
+      subscribe   => Zypprepo[$_name],
+    }
   }
 }
