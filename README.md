@@ -3,21 +3,20 @@
 [![Puppet Forge](http://img.shields.io/puppetforge/v/vholer/obs_repo.svg)](https://forge.puppetlabs.com/vholer/obs_repo)
 
 This module manages local configuration of repositories from the OpenSUSE
-(http://download.opensuse.org/repositories). It contains mirror of public
-signing GPG keys, which can be automatically imported before adding
-new repository.
+(http://download.opensuse.org/repositories). It automatically imports
+the GPG key if checking is enabled.
 
 ### Requirements
 
 Module has been tested on:
 
-* Puppet 3.3
-* SLES 11 SP3
+* Puppet 5.3
+* OpenSUSE 42.3
 
 Required modules:
 
 * stdlib (https://github.com/puppetlabs/puppetlabs-stdlib)
-* zypprepo (https://github.com/deadpoint/puppet-zypprepo)
+* zypprepo (https://github.com/voxpupuli/puppet-zypprepo)
 
 # Quick Start
 
@@ -39,7 +38,6 @@ obs_repo { name:
   baseurl      => '...',       # custom repository URL
   platform     => '...',       # custom repository platform
   gpgkey       => '...',       # custom GPG key URL
-  local_gpgkey => true|false,  # use GPG key from module
   gpgcheck     => 0|1,         # check GPG signatures?
   autorefresh  => 0|1,         # autorefresh repo. metadata?
   keeppackages => 0|1,         # keep downloaded files?

@@ -1,3 +1,8 @@
+## 2017-11-17 - Release 1.7.0
+
+- Remove all local signing keys
+- Automatically import remote GPG keys
+
 ## 2017-11-17 - Release 1.6.20171117
 
 - Signing keys refresh

@@ -1,6 +1,6 @@
 {
   "name": "vholer-obs_repo",
-  "version": "1.6.20171117",
+  "version": "1.7.0",
   "author": "vholer",
   "summary": "Configure Zypper for OpenSUSE repositories",
   "license": "MIT",
