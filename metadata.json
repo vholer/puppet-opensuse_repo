@@ -1,6 +1,6 @@
 {
   "name": "vholer-obs_repo",
-  "version": "1.5.20160727",
+  "version": "1.6.20171117",
   "author": "vholer",
   "summary": "Configure Zypper for OpenSUSE repositories",
   "license": "MIT",
@@ -8,9 +8,16 @@
   "project_page": "https://github.com/vholer/puppet-obs_repo",
   "issues_url": "https://github.com/vholer/puppet-obs_repo/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0"},
-    {"name":"darin/zypprepo","version_requirement":">= 1.0.1"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0"
+    },
+    {
+      "name": "puppet/zypprepo",
+      "version_requirement": ">= 2.2.0"
+    }
   ],
+  "data_provider": null,
   "tags": [
     "suse",
     "opensuse",
@@ -32,12 +39,8 @@
   ],
   "requirements": [
     {
-      "name": "pe",
-      "version_requirement": "3.3.x"
-    },
-    {
       "name": "puppet",
-      "version_requirement": "3.3"
+      "version_requirement": "4.0"
     }
   ]
 }

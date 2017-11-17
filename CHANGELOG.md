@@ -1,3 +1,9 @@
+## 2017-11-17 - Release 1.6.20171117
+
+- Signing keys refresh
+- Updates for Puppet >= 4
+- Support openSUSE Leap
+
 ## 2016-07-27 - Release 1.5.20160727
 
 ### Summary
